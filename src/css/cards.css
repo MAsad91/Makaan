@@ -1,0 +1,65 @@
+/* .cardcontainer {
+    background-color: aqua;
+    height: auto;
+    width: 100%;
+}
+.cards {
+    background-color: blue;
+    
+}
+.card {
+
+} */
+@media only screen and (max-width: 480px) {
+    .cardcontainer {
+        background-color: green;
+        /* display: flex; */
+        /* flex-direction: row; */
+    }
+    .card {
+        margin-bottom:20px;
+    }
+}
+@media only screen and (min-width: 480px) {
+    .cardcontainer {
+        /* background-color: greenyellow; */
+       
+    }
+    .card {
+        margin-bottom:20px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .cardcontainer {
+        /* background-color: greenyellow; */
+        display: flex;
+        flex-direction: row;
+    }
+    .card {
+        margin-left:10px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .cardcontainer {
+        /* background-color: greenyellow; */
+        display: flex;
+        flex-direction: row;
+    }
+    .card {
+        margin-left:480px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .cardcontainer {
+        /* background-color: greenyellow; */
+        display: flex;
+        flex-direction: row;
+        /* flex: 50%; */
+    }
+    .card {
+        
+        margin-left:480px;
+        width: 40%;
+    }
+    
+}

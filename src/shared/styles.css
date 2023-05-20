@@ -1,0 +1,249 @@
+/* Container for the card
+.cardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Card */
+  /* .card {
+    position: relative;
+    margin: 0.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 350px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  } */
+  
+  /* Image carousel */
+  /* .img-carousel {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .img-carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  } */
+  
+  /* Property purpose and subtype */
+  /* .propertypurpose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 0.8rem;
+  }
+  
+  .propertysubtype {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 0.8rem;
+  } */
+  
+  /* Property price, title, and location */
+  /* .propertyprice1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+    height: 100%;
+  }
+  
+  .propertyprice2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .property {
+    margin: 0;
+    font-size: 1rem;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .property:hover {
+    color: #007bff;
+  }
+  
+  .propertyprice1 p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+   */
+  /* Property size, number of bedroom, bathroom, and car parking */
+  /* .propertysize1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    font-size: 0.8rem;
+  }
+  
+  .propertysize1 small {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .fa {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .propertynoofcarparking {
+    margin-right: 0;
+  } */
+  
+  /* Responsive design */
+  /* @media (max-width: 767px) {
+    .cardcontainer {
+      justify-content: space-around;
+    }
+    
+    .card {
+      max-width: 250px;
+    }
+    
+    .img-carousel {
+      height: 150px;
+    }
+    
+    .propertyprice1 {
+      height: auto;
+    }
+    
+    .propertysize1 {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    .propertysize1 small {
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+    }
+  } */
+   
+
+
+
+  .cardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem auto;
+    max-width: 1200px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin: 1rem;
+    overflow: hidden;
+    position: relative;
+    width: 300px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }
+  
+  .propertypurpose {
+    background-color: #e91e63;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    text-transform: capitalize;
+  }
+  
+  .propertysubtype {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem;
+    text-transform: capitalize;
+  }
+  
+  .propertyprice1 {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .propertyprice2 {
+    color: #e91e63;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .property {
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .property:hover {
+    color: #e91e63;
+  }
+  
+  .propertylocation {
+    color: #555;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+  
+  .propertysize1 {
+    align-items: center;
+    border-top: 1px solid #ccc;
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: space-between;
+    margin: 0.5rem;
+    padding-top: 0.5rem;
+  }
+  
+  .propertysize1 i {
+    margin-right: 0.5rem;
+  }
+  
+  .propertynoofbedroom,
+  .propertynoofbathroom,
+  .propertynoofcarparking {
+    color: #555;
+    margin-right: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      width: 90%;
+    }
+  }
+  

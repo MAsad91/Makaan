@@ -11,10 +11,10 @@ import { error } from "jquery";
 const handleClose = () => true;
 const handleShow = () => true;
 
-function signup() {
+function Signup() {
   // const[error, setError] = useState("");
   const Error = "";
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const regex = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm;
   return (
     <div /*class="container-xxl bg-white p-0"*/>
@@ -68,10 +68,10 @@ function signup() {
               if (response.status === 200) {
                 alert("User Added Successfully!", response.data.message);
                 console.log(response.data);
-                // Modal.success({
-                //   title: "User Added Successfully!",
-                // });
-                // navigate(`/addproperty`);
+                Modal.success({
+                  title: "User Added Successfully!",
+                });
+                navigate(`/addproperty`);
               }
             } catch (err) {
               const messsage = err.response.data.message;
@@ -423,4 +423,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

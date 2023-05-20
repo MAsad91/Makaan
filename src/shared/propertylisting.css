@@ -1,0 +1,115 @@
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.property-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.bg-primary {
+  background-color: #007bff;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.start-0 {
+  left: 0;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.m-4 {
+  margin: 16px;
+}
+
+.py-1 {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.px-3 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.rounded-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.mx-4 {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.pt-1 {
+  padding-top: 4px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.border-top {
+  border-top: 1px solid #ccc;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+.border-end {
+  border-right: 1px solid #ccc;
+}
+
+.py-2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.fa {
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.empty-item {
+  height: 0;
+  padding-bottom: 100%;
+}

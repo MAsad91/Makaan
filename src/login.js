@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./shared/context/auth-context";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import { Formik } from "formik";
 function LoginPage(props) {
 
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
   const [close, setClose] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -45,15 +48,14 @@ function LoginPage(props) {
                 password: values.password,
               },
             });
-
+            auth.login(response.data.userId, response.data.token);
             console.log(response);
             if (response.status === 200) {
               alert("User Login Successfully!")
-              navigate('/addproperty');
-              // Modal.success({
-              //   title: "User Get Successfully!",
-              // });
-              // navigate(`/addproperty`);
+              Modal.success({
+                title: "User Login Successfully!",
+              });
+              navigate(`/${response.data.userId}`);
             }
           } catch (err) {
             const messsage = err.response.data.message;
@@ -142,12 +144,12 @@ function LoginPage(props) {
                     <p style={{ textalign: "center" }}>
                       
                       Don't have an account?
-                      <Link to="/signup " style={{ marginLeft: "20px" }}>
+                      {/* <Link to="/signup " style={{ marginLeft: "20px" }}>
                         SignUp
-                      </Link>
-                      <Link to="/forgetpassword " style={{ marginLeft: "70px" }}>
+                      </Link> */}
+                      {/* <Link to="/forgetpassword " style={{ marginLeft: "70px" }}>
                         Forget Password?
-                      </Link>
+                      </Link> */}
                     </p>
                   </div>
                   <div

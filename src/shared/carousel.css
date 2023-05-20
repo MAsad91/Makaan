@@ -1,0 +1,200 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.left-arrow {
+  left: 0.1rem;
+}
+
+.right-arrow {
+  right: 0rem;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  color: black;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cardcontainer {
+  flex: 0 0 30%;
+  transition: transform 0.3s;
+  opacity: 1;
+}
+
+.cardcontainer.active {
+  opacity: 1;
+}
+
+.property-item {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%; /* Added */
+  height: 100%; /* Added */
+  display: flex; /* Added */
+  flex-direction: column; /* Added */
+}
+
+.property-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.position-relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.bg-primary {
+  background-color: #007bff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.rounded-top {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.start-0 {
+  left: 0;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.d-block {
+  display: block;
+}
+
+.h5 {
+  font-size: 1.25rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.border-top {
+  border-top: 1px solid #ccc;
+}
+
+.border-end {
+  border-right: 1px solid #ccc;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.flex-fill {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 767px) {
+  .cards {
+    flex-wrap: nowrap; /* Added */
+  }
+
+  .cardcontainer {
+    flex: 0 0 90%; /* Modified */
+    
+  }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    overflow-y: hidden;
+    font-size: 2rem;
+    color: white;
+    /* background-color: #00B98E; */
+    padding: 20px;
+    /* border-radius: 50px; */
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s;
+  }
+  
+  .left-arrow {
+    left: 0rem;
+  }
+  
+  .right-arrow {
+    right: 0rem;
+  }
+  
+  .left-arrow:hover,
+  .right-arrow:hover {
+    color: black;
+  }
+}
