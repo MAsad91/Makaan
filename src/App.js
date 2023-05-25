@@ -76,12 +76,11 @@ function App() {
         </div>
       </div>
 
-      <Search property={property} setSearchResults={setSearchResults} />
-      <div 
+      <Search />
+      {/* <div 
       // style={{backgroundColor:"#2E307D", padding: "40px",paddingLeft:"60px" ,borderRadius:"30px"}}
-      >
-      <CardCarousel property={searchResults} />
-      </div>
+      > */}
+      
 
       <div class="container-xxl py-5">
         <div class="container">

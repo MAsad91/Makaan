@@ -48,13 +48,18 @@ function AddProperty() {
   const auth = useContext(AuthContext);
 
   const regex = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm;
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;
   const randomNumber = Math.floor(Math.random() * new Date().getTime());
   const onChange = (key) => {
     console.log(key);
   };
   const navigate = useNavigate();
-  const year = new Date().getFullYear() - 20;
-  const years = Array.from(new Array(20), (val, index) => index + year);
+  const byear = new Date().getFullYear() - 20;
+  const years = Array.from(new Array(20), (val, index) => index + byear);
 
   const [propertyPurpose, setPropertyPurpose] = useState("");
   const [propertyType, setPropertyType] = useState("");
@@ -75,7 +80,7 @@ function AddProperty() {
   const [close, setClose] = useState(false);
   const [show, setShow] = useState(false);
   const [defaultImage, setDefaultImage] = useState(null);
-let purpose;
+  let purpose;
   const handleClose = () => setClose(true);
   const handleShow = () => setShow(true);
   const showModal = () => {
@@ -273,7 +278,7 @@ let purpose;
     setPropertyImages(fileList);
     setCheckProperty(true);
   };
-  
+
   // const uploadHandle = ({ fileList }) => {
   //   console.log(fileList);
   //   setPropertyImages(fileList);
@@ -284,7 +289,7 @@ let purpose;
   //   }
   // };
 
-  const handleBeforeUpload = ({fileList}) => {
+  const handleBeforeUpload = ({ fileList }) => {
     if (fileList.length === 0) {
       // If no file is selected, set the default image
       setDefaultImage("./img/test1.jpg");
@@ -324,8 +329,12 @@ let purpose;
                 propertyNearByLandmarks: [],
                 numberoffloors: "",
                 unitfloor: "",
+                name: "",
+                phonenumber: "",
                 featured: false,
+                verified: false,
                 userId: auth?.userId,
+                propertyaddeddate: formattedDate,
               }}
               validate={(values) => {
                 const errors = {};
@@ -357,10 +366,14 @@ let purpose;
                 if (!values.propertylocation) {
                   errors.propertylocation = "Property Location Required";
                 }
-
-                // if (!checkProperty || !propertyImages) {
-                //   errors.images = "Property Images Required";
-                // }
+                if (!values.phonenumber) {
+                  errors.phonenumber = "Required";
+                } else if (!regex.test(values.phonenumber)) {
+                  errors.phonenumber = "Invalid Phone No";
+                }
+                if (!values.name) {
+                  errors.name = "Required";
+                }
 
                 return errors;
               }}
@@ -436,8 +449,11 @@ let purpose;
 
                 formData.append("numberoffloors", values.numberoffloors);
                 formData.append("unitfloor", values.unitfloor);
+                formData.append("name", values.name);
+                formData.append("phonenumber", values.phonenumber);
                 formData.append("featured", (values.featured = false));
                 formData.append("userId", values?.userId);
+                formData.append("propertyaddeddate", values?.propertyaddeddate = formattedDate);
                 propertyImages.map((image) => {
                   formData.append("images", image.originFileObj);
                 });
@@ -1908,34 +1924,37 @@ let purpose;
                                 <div>
                                   <Upload.Dragger
                                     multiple
-                                    
                                     accept=".png,.jpg,.jpeg"
                                     onChange={uploadHandle}
                                     beforeUpload={handleBeforeUpload}
-                                  >{defaultImage ? (
-                                    <img
-                                      src={defaultImage}
-                                      alt="Default"
-                                      style={{ width: "100%", height: "100%" }}
-                                    />
-                                  ) : (
-                                    <>
-                                      {/* <p className="ant-upload-drag-icon">
+                                  >
+                                    {defaultImage ? (
+                                      <img
+                                        src={defaultImage}
+                                        alt="Default"
+                                        style={{
+                                          width: "100%",
+                                          height: "100%",
+                                        }}
+                                      />
+                                    ) : (
+                                      <>
+                                        {/* <p className="ant-upload-drag-icon">
                                         <InboxOutlined />
                                       </p> */}
-                                      <p className="ant-upload-text">
-                                        Drag file here OR
-                                        <br />
-                                        <button className="btn btn-primary py-2" type="button">
-                                          Click Upload
-                                        </button>
-                                      </p>
-                                    </>
-                                  )}
-                            
-                                    
+                                        <p className="ant-upload-text">
+                                          Drag file here OR
+                                          <br />
+                                          <button
+                                            className="btn btn-primary py-2"
+                                            type="button"
+                                          >
+                                            Click Upload
+                                          </button>
+                                        </p>
+                                      </>
+                                    )}
                                   </Upload.Dragger>
-                                  
 
                                   <br />
                                   <br />
@@ -1944,7 +1963,7 @@ let purpose;
                             </div>
                           </div>
                         </div>
-                       
+
                         <div class="wow fadeInUp" data-wow-delay="0.5s">
                           <div class="row g-4" style={{ paddingTop: "30px" }}>
                             <h5>Add details about your property</h5>
@@ -2585,25 +2604,27 @@ let purpose;
                                       </select>
                                     </button>
                                   </div>
+                                </Panel>
+                                <Panel header="Secondry Feature" key="2">
                                   <div className="counter_container">
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType ===
-                                            "Swimming Pool"
+                                        propertySecondaryDetaile?.includes(
+                                          "swimming pool"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        handlePrimaryWithoutCountDetails(
-                                          "Swimming Pool",
-                                          "1"
-                                        );
-                                        console.log(propertyPrimaryDetaile);
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails("swimming pool");
+
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
+
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
@@ -2616,23 +2637,21 @@ let purpose;
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType === "home theatre"
+                                        propertySecondaryDetaile?.includes(
+                                          "home theatre"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        // setpropertyPrimaryDetaile("home theatre");
-                                        // setpropertyPrimaryDetaile.detaileTypeCount(1);
-                                        handlePrimaryWithoutCountDetails(
-                                          "home theatre",
-                                          "1"
-                                        );
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails("home theatre");
 
-                                        console.log(propertyPrimaryDetaile);
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
+
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
@@ -2645,27 +2664,26 @@ let purpose;
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType === "lawn/garden"
+                                        propertySecondaryDetaile?.includes(
+                                          "lawn/garden"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        // setpropertyPrimaryDetaile("lawn/garden");
-                                        handlePrimaryWithoutCountDetails(
-                                          "lawn/garden",
-                                          "1"
-                                        );
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails("lawn/garden");
 
-                                        // setpropertyPrimaryDetaile.detaileTypeCount(1);
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
+
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
-                                        <FaHouseUser size={25} />
-                                        Lawn/ Garden
+                                        <FaWarehouse size={25} />
+                                        Lawn / Garden
                                       </p>
                                     </button>
                                   </div>
@@ -2673,30 +2691,26 @@ let purpose;
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType ===
-                                            "elevator/lift"
+                                        propertySecondaryDetaile?.includes(
+                                          "elevator/lift"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        // setpropertyPrimaryDetaile("elevator/lift");
-                                        handlePrimaryWithoutCountDetails(
-                                          "elevator/lift",
-                                          "1"
-                                        );
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails("elevator/lift");
 
-                                        // setpropertyPrimaryDetaile.detaileTypeCount(1);
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
 
-                                        console.log(propertyPrimaryDetaile);
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
-                                        <FaHouseUser size={25} />
-                                        Elevator/Lift
+                                        <FaDumpster size={25} />
+                                        Elevator / Lift
                                       </p>
                                     </button>
                                   </div>
@@ -2704,29 +2718,28 @@ let purpose;
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType ===
-                                            "servent quarter"
+                                        propertySecondaryDetaile?.includes(
+                                          "servent quarter"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        handlePrimaryWithoutCountDetails(
-                                          "servent quarter",
-                                          "1"
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails(
+                                          "servent quarter"
                                         );
 
-                                        // setpropertyPrimaryDetaile.detaileTypeCount(1);
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
 
-                                        console.log(propertyPrimaryDetaile);
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
-                                        <FaHouseUser size={25} />
-                                        Servant Quarter
+                                        <FaWarehouse size={25} />
+                                        Servent Quarter
                                       </p>
                                     </button>
                                   </div>
@@ -2734,34 +2747,31 @@ let purpose;
                                     <button
                                       class="col-3"
                                       className={
-                                        propertyPrimaryDetaile?.find(
-                                          (detail) =>
-                                            detail.detailType ===
-                                            "security staff"
+                                        propertySecondaryDetaile?.includes(
+                                          "security staff"
                                         )
                                           ? "property_details1"
                                           : "property_details"
                                       }
+                                      // className="property_details"
                                       type="button"
                                       onClick={() => {
-                                        // setpropertyPrimaryDetaile("security staff");
-                                        // setpropertyPrimaryDetaile.detaileTypeCount(1);
-                                        handlePrimaryWithoutCountDetails(
-                                          "security staff",
-                                          "1"
+                                        // setpropertySecondaryDetaile("corner plot");
+                                        handleSecondaryDetails(
+                                          "security staff"
                                         );
 
-                                        console.log(propertyPrimaryDetaile);
+                                        // setpropertySecondaryDetaile.detailTypeCount(1);
+
+                                        console.log(propertySecondaryDetaile);
                                       }}
                                     >
                                       <p>
-                                        <FaHouseUser size={25} />
+                                        <FaWarehouse size={25} />
                                         Security Staff
                                       </p>
                                     </button>
                                   </div>
-                                </Panel>
-                                <Panel header="Secondry Feature" key="2">
                                   <div className="counter_container">
                                     <button
                                       class="col-3"
@@ -3349,17 +3359,46 @@ let purpose;
                             </div>
                           </div>
                         </div>
-                        {/* );
-                      } else if (next === 9) {
-                        return ( */}
-                        <div class="wow fadeInUp" data-wow-delay="0.5s"></div>
-                        {/* );
-                      } else if (next === 10) {
-                        return ( */}
-                        <div
-                          // container-xxl
-                          className="floor_unit py-5"
-                        ></div>
+                        <div class="col-12">
+                          <h6>What is your name?</h6>
+                          <div class="form-floating">
+                            <input
+                              type="text"
+                              name="name"
+                              // id="phone_no"
+                              class="form-control"
+                              placeholder="Your Name"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.name}
+                            />
+                            <p style={{ color: "red" }}>
+                              {errors.name && touched.name && errors.name}
+                            </p>
+                            <label for="name">Your Name</label>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <h6>How to Contact you</h6>
+                          <div class="form-floating">
+                            <input
+                              type="text"
+                              name="phonenumber"
+                              // id="phone_no"
+                              class="form-control"
+                              placeholder="Your Phone No"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.phonenumber}
+                            />
+                            <p style={{ color: "red" }}>
+                              {errors.phonenumber &&
+                                touched.phonenumber &&
+                                errors.phonenumber}
+                            </p>
+                            <label for="phone_no">Your phoneno</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="col-2 py-3" className="action_buttons">
@@ -3422,7 +3461,7 @@ let purpose;
                     </div>
                     <div className="property-details">
                       <h1 className="property-title">{values.propertytitle}</h1>
-                      
+
                       <div
                         style={{
                           display: "flex",
@@ -3632,12 +3671,12 @@ let purpose;
                             placeholder="Your Phone No"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.phoneno}
+                            value={values.phonenumber}
                           />
                           <p style={{ color: "red" }}>
-                            {errors.phoneno &&
-                              touched.phoneno &&
-                              errors.phoneno}
+                            {errors.phonenumber &&
+                              touched.phonenumber &&
+                              errors.phonenumber}
                           </p>
                           <label for="phone_no">Your Phone No</label>
                         </div>

@@ -146,13 +146,13 @@ function NavbarMenu() {
                       Property
                     </a>
                     <div class="dropdown-menu rounded-0 m-0">
-                      <a href="/propertylist" class="dropdown-item">
+                      <a href="/buyaproperty" class="dropdown-item">
                         Buy
                       </a>
                       <a href="/addproperty" class="dropdown-item">
                         Sell
                       </a>
-                      <a href="/propertyagent" class="dropdown-item">
+                      <a href="/rentaproperty" class="dropdown-item">
                         Rent
                       </a>
                     </div>

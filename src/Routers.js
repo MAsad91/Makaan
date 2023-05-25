@@ -15,9 +15,9 @@ import Signup from "./signup";
 import ForgetPassword from "./forgetpassword";
 import About from "./about";
 import Contact from "./contact";
-import PropertyAgent from "./property-agent";
+import RentAProperty from "./RentAProperty";
 import PropertyDetails from "./property-details";
-import PropertList from "./property-list";
+import BuyAProperty from "./BuyAProperty";
 import PropertyType from "./property-type";
 import Testimonial from "./testimonial";
 import Page404 from "./404";
@@ -111,13 +111,13 @@ function AppRouters() {
               />
               <Route path="/about" exact element={<About />} />
               <Route path="/contact" exact element={<Contact />} />
-              <Route path="/propertyagent" exact element={<PropertyAgent />} />
+              <Route path="/rentaproperty" exact element={<RentAProperty />} />
               <Route
                 path="/propertydetails"
                 exact
                 element={<PropertyDetails />}
               />
-              <Route path="/propertylist" exact element={<PropertList />} />
+              <Route path="/buyaproperty" exact element={<BuyAProperty />} />
               <Route path="/propertytype" exact element={<PropertyType />} />
               <Route path="/testimonial" exact element={<Testimonial />} />
               <Route path="/404" exact element={<Page404 />} />
